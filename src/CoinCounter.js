@@ -1,39 +1,52 @@
 
 export const CoinCounter = (counter, coinArray = [0,0,0,0]) => {
-  if (counter == 0){
+  let quarter = .25;
+  let dime = .10;
+  let nickle = .05;
+  let penny = .01;
+  
+  // coinArray.splice(0, 0, "quarters");
+  // let coinKinds = ["quarters", "dimes", "nickels", "pennies"];
+  
+  
+  
+  
+  if (counter <= 0) {
+    console.log(coinArray);
     return coinArray; 
   }
   
-  if (counter >= 1) {
-    // let wholeNumber = Math.floor(counter)
-    let quarter = .25;
-    let dime = .10;
-    let nickle = .05;
-    let penny = .01;
+  if (counter >= quarter )
+  {
+    coinArray[0] = Math.floor(counter / quarter) + " quarters"; 
+    counter = counter % quarter;
+    return CoinCounter(counter, coinArray); 
+    }
+  else if (counter >= dime)
+    {
+      coinArray[1] = Math.floor(counter / dime) +" dimes"; 
+      counter = counter % dime;
+      return CoinCounter(counter,coinArray);
+    }
+  else if (counter >= nickle)
+    {
+      coinArray[2] = Math.floor(counter / nickle) + " nickles";
+      counter = counter % nickle; 
+      return CoinCounter(counter,coinArray);
+    }
     
-   // 0.99
-    if (counter >= quarter){
-      coinArray[0] = Math.floor(counter / quarter); //0.99 - (0.99 % 0.25) = 3
-      counter = counter % quarter;
-
-    } else if (counter >= dime){
-        countCoins += 0.24 / 0.10; 
-        // counter = quarterRemainder % dime; 
-        // coinArray[1] = 
-    } else if (dimeRemainder >= nickle) {
-          let nickleRemainder = dimeRemainder % nickle;
-    } else {
-          let nickleRemainder = dimeRemainder % penny;
+  else if (counter >= penny)
+    {
+      coinArray[3] = Math.floor(counter / penny) + " pennies";
+      counter = 0;
+      return CoinCounter(counter,coinArray);
     }
   }
+  CoinCounter(4.99);
+  
     // then divide decimal into quarter which will be 3
     // then remainder of that (.24) by dimes which should be equat to 2
     // counter = wholeNumber / qaurter;
-    console.log(counter);
-    return CoinCounter(counter, coinArray);
-}
-
-CoinCounter(4.99);
 
 
 
